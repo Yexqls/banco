@@ -10,8 +10,9 @@ use App\Http\Controllers\TransaccionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('banco.crear');
 });
+
 //Crear cliente
 Route::get('/banco', [MenuController::class, 'crear'])->name('banco.crear');
 Route::get('/usuario/crear', [CrearController::class, 'crear'])->name('usuario.crear');

@@ -1,0 +1,21 @@
+Tecnologias usadas:
+Laravel - como framework principal
+Boostrap - para dar algunos estilos
+PHP - creacion de los controladores y rutas
+HTML5 - estructura de las pagians
+CSS - estilos para las paginas
+XAMPP - servidor
+Mysql - base de datos
+Sweetalert2 - validaciones
+
+
+Inicializar proyecto:
+Guardalo en una carpeta en la siguiente ruta:
+C:\xampp\htdocs
+
+abre el proyecto y ejecuta el el siguiente comando:
+php artisan serve
+
+abre XAMPP y inicia APACHE y MySQL
+
+Abre Php my admin y crea una tabla llamada 'banco' e importa la base de datos
