@@ -68,9 +68,9 @@
     </style>
 
     <div class="container mb-5 main-section">
-        <h1 class="text-center mb-4" style="color: #146ebe;">Menú Principal</h1>
+        <h1 class="text-center mb-4 fw-bold" style="color: #146ebe;">Menú Principal</h1>
         <div class="cards-container">
-            <a href="/banco/ahorro">
+            <a href="/cuenta/ahorro">
                 <div class="card card-1">
                     <i class="fa-solid fa-user tarjetas"></i>
                     <div class="card-body">

@@ -18,7 +18,8 @@ Route::get('/usuario/crear', [CrearController::class,'crear'])->name('usuario.cr
 Route::post('/usuario/store', [CrearController::class,'store'])->name('usuario.store');
 
 //Ahorro
-Route::get('/banco/ahorro', [CuentaController::class,'crear'])->name('banco.ahorro');
+Route::get('/cuenta/ahorro', [CuentaController::class, 'ahorro'])->name('cuenta.ahorro');
+Route::post('/cuenta/store', [CuentaController::class, 'store'])->name('cuenta.store');
 
 //Transaccion
 Route::get('/banco/transaccion', [TransaccionController::class,'crear'])->name('banco.transaccion');

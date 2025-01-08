@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #146ebe;">
         <a class="navbar-brand" href="/banco" style="color: white; padding-left: 10px;">
-            <i class="fa-solid fa-house" style="padding-right: 2px;"></i> Banco MX
+            <i class="fa-solid fa-house" style="padding-right: 2px;"></i> <b>Banco MX</b>
         </a>
         <a href="/usuario/crear" class="text-white ml-3" style="padding-left: 20px;">Crear cliente</a>
     </nav>

@@ -13,7 +13,6 @@ class CrearController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the form data
         $request->validate([
             'tipo_identificacion' => 'required|string|max:255',
             'numero_identificacion' => 'required|string|max:255',
@@ -23,7 +22,6 @@ class CrearController extends Controller
             'municipio' => 'required|string|max:255',
         ]);
 
-        // Create a new 'equipos' record with the validated data
         $cliente = new Cliente();
         $cliente->tipo_identificacion = $request->tipo_identificacion;
         $cliente->numero_identificacion = $request->numero_identificacion;
@@ -32,10 +30,8 @@ class CrearController extends Controller
         $cliente->razon_social = $request->razon_social;
         $cliente->municipio = $request->municipio;
         
-        // Save the new record to the database
         $cliente->save();
 
-        // Redirect or return response with success message
         return redirect()->back()->with('success', 'Cliente creado exitosamente.');
     }
 }
