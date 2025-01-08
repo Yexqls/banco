@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    .container {
+    background-color: #ffffff;
+    padding: 80px;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(247, 241, 241, 0.1);
+    box-sizing: border-box;
+    border-radius: 40px;
+}
+</style>
 <div class="container mt-5">
     <h1>Registrar Transacción</h1>
     <form method="POST">

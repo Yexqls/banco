@@ -58,7 +58,7 @@
 
         .container {
             background-color: #ffffff;
-            padding: 70px;
+            padding: 70px 70px 0;
             max-width: 1600px;
             margin: 0 auto;
             box-shadow: 0 4px 6px rgba(247, 241, 241, 0.1);
