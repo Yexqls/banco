@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CuentaAhorro extends Model
 {
     protected $table = 'cuentas';
-    protected $primaryKey = 'id_cuentas';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'cliente_id',
         'numero_cuenta',
@@ -15,4 +15,8 @@ class CuentaAhorro extends Model
         'fecha_creacion'
     ];
 
+    public function transacciones()
+    {
+        return $this->hasMany(Transaccion::class, 'cuenta_id', 'id');
+    }
 }

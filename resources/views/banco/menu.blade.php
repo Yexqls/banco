@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </a>
-            <a href="banco/consultar">
+            <a href="/cuenta/consulta">
                 <div class="card card-4">
                     <i class="fa-solid fa-money-bill tarjetas"></i>
                     <div class="card-body">

@@ -13,17 +13,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Crear cliente
-Route::get('/banco', [MenuController::class,'crear'])->name('banco.crear');
-Route::get('/usuario/crear', [CrearController::class,'crear'])->name('usuario.crear');
-Route::post('/usuario/store', [CrearController::class,'store'])->name('usuario.store');
+Route::get('/banco', [MenuController::class, 'crear'])->name('banco.crear');
+Route::get('/usuario/crear', [CrearController::class, 'crear'])->name('usuario.crear');
+Route::post('/usuario/store', [CrearController::class, 'store'])->name('usuario.store');
 
 //Ahorro
 Route::get('/cuenta/ahorro', [CuentaController::class, 'ahorro'])->name('cuenta.ahorro');
 Route::post('/cuenta/store', [CuentaController::class, 'store'])->name('cuenta.store');
 
 //Transaccion
-Route::get('/banco/transaccion', [TransaccionController::class,'crear'])->name('banco.transaccion');
+Route::get('/banco/transaccion', [TransaccionController::class, 'crear'])->name('banco.transaccion');
 
 
 //Consultar
-Route::get('/banco/consultar', [ConsultarController::class,'crear'])->name('banco.consultar');
+Route::get('/cuenta/consulta', [ConsultarController::class, 'consulta'])->name('cuenta.consulta');
+Route::post('/cuenta/consultar-saldo', [ConsultarController::class, 'consultarSaldo'])->name('cuenta.consultarSaldo');
