@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 
 class CrearController extends Controller
 {
-    public function crear(){
+    public function crear()
+    {
         return view('banco.crear_cliente');
     }
 
+    //registrar cliente
     public function store(Request $request)
     {
         $request->validate([
@@ -29,7 +31,7 @@ class CrearController extends Controller
         $cliente->apellidos = $request->apellidos;
         $cliente->razon_social = $request->razon_social;
         $cliente->municipio = $request->municipio;
-        
+
         $cliente->save();
 
         return redirect()->back()->with('success', 'Cliente creado exitosamente.');

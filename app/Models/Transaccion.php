@@ -10,7 +10,7 @@ class Transaccion extends Model
     protected $fillable = [
         'cuenta_id',
         'monto',
-        'tipo',
+        'tipo_transaccion',
         'fecha_transaccion',
     ];
 

@@ -37,11 +37,12 @@
             width: 22rem;
             height: 30rem;
             border-radius: 8px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .main-section {
@@ -57,16 +58,13 @@
         }
 
         .container {
-            background-color: #ffffff;
-            padding: 70px 70px 0;
+            padding: 30px 70px 30px;
             max-width: 1600px;
             margin: 0 auto;
-            box-shadow: 0 4px 6px rgba(247, 241, 241, 0.1);
             box-sizing: border-box;
             border-radius: 40px;
         }
     </style>
-
     <div class="container mb-5 main-section">
         <h1 class="text-center mb-4 fw-bold" style="color: #146ebe;">Menú Principal</h1>
         <div class="cards-container">
