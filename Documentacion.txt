@@ -34,7 +34,8 @@ php artisan serve
 ///////////////////
 Para manejar el proyecto, se cuenta con una ventana principal donde se puede interactuar con la interfaz y las cuentas creadas.
 Asimismo, es posible crear cuentas utilizando el botón "Crear cliente", ubicado en la parte superior izquierda. 
-Una vez creado el cliente, se podrá proceder con la creación de cuentas de ahorro, pudiendo registrar varias cuentas.
+Puede regresar a la vista principal dando clic en el icono de la casa o en "Banco MX"
+Una vez creado el cliente, se podrá proceder con la creación de cuentas de ahorro, pudiendo registrar varias cuentas. (NOTA: al realizar un registrar los selects se reestablecen)
 Además, se pueden realizar transacciones y consultar el saldo junto con la transacción anterior. 
 Todas las operaciones CRUD están validadas, enviando una alerta en caso de que algún dato sea incorrecto o falte completar uno.
 
