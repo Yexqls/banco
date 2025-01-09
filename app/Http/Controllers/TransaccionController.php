@@ -22,31 +22,33 @@ class TransaccionController extends Controller
             'monto' => 'required|numeric|min:0.01',
             'fecha_creacion' => 'required|date',
         ]);
-    
-        $cuenta = CuentaAhorro::findOrFail($request->cuenta_id);
-    
+
+        // Validar que la cuenta y cuenta
+        $cuenta = CuentaAhorro::with('cliente')->find($request->cuenta_id);
+        if (!$cuenta) {
+            return redirect()->back()->with('error', 'La cuenta no existe.');
+        }
+        if (!$cuenta->cliente) {
+            return redirect()->back()->with('error', 'La cuenta no tiene un cliente asociado.');
+        }
+        // Validar que el saldo sea suficiente
         if ($request->tipo_transaccion === 'retiro') {
-            // Validar que el saldo sea suficiente
             if ($cuenta->saldo < $request->monto) {
-                // Redirigir con un mensaje de error
                 return redirect()->back()->with('error', 'El saldo disponible no es suficiente para realizar el retiro.');
             }
             $cuenta->saldo -= $request->monto;
         } elseif ($request->tipo_transaccion === 'consignacion') {
             $cuenta->saldo += $request->monto;
         }
-    
         $cuenta->save();
-    
-        // Registrar transacción
+        //Registrar transaccion
         Transaccion::create([
             'cuenta_id' => $cuenta->id,
             'monto' => $request->monto,
             'tipo_transaccion' => $request->tipo_transaccion,
             'fecha_transaccion' => $request->fecha_creacion,
         ]);
-    
+
         return redirect()->back()->with('success', 'Transacción registrada exitosamente.');
     }
-    
 }

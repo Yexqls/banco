@@ -17,4 +17,9 @@ class Cliente extends Model
         'razon_social',
         'municipio',
     ];
+
+    public function cuentas()
+    {
+        return $this->hasMany(CuentaAhorro::class, 'cliente_id'); 
+    }
 }
