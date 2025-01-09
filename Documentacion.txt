@@ -25,6 +25,8 @@ Genera una key en caso de no tenerla y genera las tablas en banco:
 php artisan key:generate
 php artisan migrate
 
+Cree o importe las tablas que estan en el archivo de banco.sql: "clientes", "cuentas" y "transacciones"
+
 abre XAMPP y inicia APACHE y MySQL
 
 Ejecuta el el siguiente comando (Es el puerto por defecto 8000) y abra el link:
