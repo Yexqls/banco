@@ -23,7 +23,7 @@ class TransaccionController extends Controller
             'fecha_creacion' => 'required|date',
         ]);
 
-        // Validar que la cuenta y cuenta
+        // Validar que la cuenta y cliente
         $cuenta = CuentaAhorro::with('cliente')->find($request->cuenta_id);
         if (!$cuenta) {
             return redirect()->back()->with('error', 'La cuenta no existe.');
