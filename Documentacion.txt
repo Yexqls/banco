@@ -19,7 +19,7 @@ composer install
 
 Activa el .env y configure la conexion
 
-Abre phpMyAdmin y crea una tabla llamada banco. Tambien podria importa la base de datos si ya tiene la key(Esta se encuentar en la raiz del proeycto como "banco.sql")
+Abre phpMyAdmin y crea una tabla llamada banco. (Esta se encuentar en la raiz del proeycto como "banco.sql" pero el key necesario cambia al descargarla de github, asi que siga al siguiente paso)
 
 Genera una key en caso de no tenerla y genera las tablas en banco:
 php artisan key:generate
