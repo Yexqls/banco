@@ -14,12 +14,12 @@ Inicializar proyecto:
 Guárdalo en una carpeta en la siguiente ruta:
 C:\xampp\htdocs
 
-abre el proyecto y ejecuta el el siguiente comando:
+abre el proyecto y ejecuta el el siguiente comando (Es el puerto por defecto 8000):
 php artisan serve
 
 abre XAMPP y inicia APACHE y MySQL
 
-Abre phpMyAdmin y crea una tabla llamada banco. Luego, importa la base de datos.
+Abre phpMyAdmin y crea una tabla llamada banco. Luego, importa la base de datos. (Esta se encuentar en la raiz del proeycto como "banco.sql")
 
 ///////////////////
 Para manejar el proyecto, se cuenta con una ventana principal donde se puede interactuar con la interfaz y las cuentas creadas.
