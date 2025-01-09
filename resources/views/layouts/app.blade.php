@@ -15,7 +15,7 @@
             margin: 0;
         }
 
-        /* Ajusta el valor para que sea adecuado al tamaño del header y footer */
+        /* Ajusta el valor del footer y header*/
         .container {
             min-height: calc(80vh - 120px);
             padding-bottom: 60px;

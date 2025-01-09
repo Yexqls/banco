@@ -7,7 +7,7 @@
             @csrf
             <div class="mb-3">
                 <label for="cliente_id" class="form-label">Cliente</label>
-                <select class="form-control" id="cliente_id" name="cliente_id" required>
+                <select class="form-control" id="cliente_id" name="cliente_id">
                     @foreach ($clientes as $cliente)
                         <option value="{{ $cliente->id }}">{{ $cliente->nombres }} {{ $cliente->apellidos }}</option>
                     @endforeach
@@ -41,22 +41,19 @@
                 let isValid = true;
                 let errorMessage = '';
                 let errors = {};
-
-                // Limpiar mensajes previos
                 $(".error-message").remove();
-
-                const numeroCuenta = $("#numero_cuenta").val();
-                if (!/^\d{10,18}$/.test(numeroCuenta)) {
-                    isValid = false;
-                    errors['numero_cuenta'] =
-                        'El número de cuenta debe ser solo números y tener entre 10 y 18 caracteres.';
-                }
 
                 // Validación cliente
                 const clienteId = $("#cliente_id").val();
                 if (!clienteId) {
                     isValid = false;
                     errors['cliente_id'] = 'El cliente es obligatorio.';
+                }
+                const numeroCuenta = $("#numero_cuenta").val();
+                if (!/^\d{10,18}$/.test(numeroCuenta)) {
+                    isValid = false;
+                    errors['numero_cuenta'] =
+                        'El número de cuenta debe ser solo números y tener entre 10 y 18 caracteres.';
                 }
 
                 if (!isValid) {

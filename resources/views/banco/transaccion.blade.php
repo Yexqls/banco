@@ -7,7 +7,7 @@
             @csrf
             <div class="mb-3">
                 <label for="cuenta_id" class="form-label">Cuenta</label>
-                <select class="form-control" id="cuenta_id" name="cuenta_id" required>
+                <select class="form-control" id="cuenta_id" name="cuenta_id">
                     @foreach ($cuentas as $cuenta)
                         <option value="{{ $cuenta->id }}" {{ old('cuenta_id') == $cuenta->id ? 'selected' : '' }}>
                             {{ $cuenta->numero_cuenta }}
@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
                 <label for="tipo_transaccion" class="form-label">Tipo de Transacción</label>
-                <select class="form-control" id="tipo_transaccion" name="tipo_transaccion" required>
+                <select class="form-control" id="tipo_transaccion" name="tipo_transaccion">
                     <option value="retiro" {{ old('tipo_transaccion') == 'retiro' ? 'selected' : '' }}>Retiro</option>
                     <option value="consignacion" {{ old('tipo_transaccion') == 'consignacion' ? 'selected' : '' }}>
                         Consignación</option>
@@ -30,7 +30,7 @@
             </div>
             <div class="mb-3">
                 <label for="fecha_creacion" class="form-label">Fecha de creación</label>
-                <input type="datetime-local" class="form-control" id="fecha_creacion" name="fecha_creacion" required>
+                <input type="datetime-local" class="form-control" id="fecha_creacion" name="fecha_creacion">
             </div>
 
             <button type="submit" class="btn btn-primary">Registrar</button>
@@ -61,14 +61,12 @@
                     confirmButtonText: 'Cerrar',
                 });
             @endif
-        });
 
-        $(document).ready(function() {
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
                     title: '¡Éxito!',
-                    text: '{{ session('success') }}', 
+                    text: '{{ session('success') }}',
                     showConfirmButton: false,
                     timer: 3000
                 });
@@ -78,11 +76,16 @@
                 let isValid = true;
                 let errorMessage = '';
                 let errors = {};
-
-                // Limpiar mensajes previos
                 $(".error-message").remove();
 
-                // Validación sin negativos
+                // Validación de cuenta_id vacía
+                const cuentaId = $("#cuenta_id").val();
+                if (!cuentaId) {
+                    isValid = false;
+                    errors['cuenta_id'] = 'La cuenta es obligatoria.';
+                }
+
+                // Validación sin negativos para el monto
                 const monto = $("#monto").val();
                 if (monto <= 0 || isNaN(monto)) {
                     isValid = false;

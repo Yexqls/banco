@@ -18,8 +18,8 @@ class CrearController extends Controller
         $request->validate([
             'tipo_identificacion' => 'required|string|max:255',
             'numero_identificacion' => 'required|string|max:255',
-            'nombres' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
+            'nombres' => 'nullable|string|max:255',
+            'apellidos' => 'nullable|string|max:255',
             'razon_social' => 'nullable|string|max:255',
             'municipio' => 'required|string|max:255',
         ]);

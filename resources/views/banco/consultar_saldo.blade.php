@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 
     <div class="container mt-5">
@@ -7,7 +8,7 @@
             @csrf
             <div class="mb-3">
                 <label for="cuenta_id" class="form-label">Cuenta</label>
-                <select class="form-control" id="cuenta_id" name="cuenta_id" required>
+                <select class="form-control" id="cuenta_id" name="cuenta_id" >
                     @foreach ($cuentas as $cuenta)
                         <option value="{{ $cuenta->id }}"
                             {{ isset($cuentaSeleccionada) && $cuentaSeleccionada->id == $cuenta->id ? 'selected' : '' }}>
@@ -31,5 +32,39 @@
             @endisset
             <button type="submit" class="btn btn-primary mt-3">Consultar</button>
         </form>
+
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function(event) {
+                let isValid = true;
+                let errorMessage = '';
+                let errors = {};
+    
+                const cuentaId = $("#cuenta_id").val();
+                if (!cuentaId) {
+                    isValid = false;
+                    errors['cuenta_id'] = 'La cuenta es obligatoria.';
+                }
+                if (!isValid) {
+                    event.preventDefault();
+                    let errorHTML = '';
+                    for (const field in errors) {
+                        errorHTML += `<p><strong>${field}</strong>: ${errors[field]}</p>`;
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡Error!',
+                        html: errorHTML,
+                        showConfirmButton: true,
+                        confirmButtonText: 'Corregir',
+                    });
+                }
+            });
+        });
+    </script>
+    
 @endsection

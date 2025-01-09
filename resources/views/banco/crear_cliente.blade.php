@@ -18,11 +18,12 @@
                     maxlength="18">
             </div>
             <div class="mb-3">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="nombres" class="form-label">Nombre(s)</label>
                 <input type="text" class="form-control" id="nombres" name="nombres">
             </div>
+            
             <div class="mb-3">
-                <label for="apellidos" class="form-label">Apellidos</label>
+                <label for="apellidos" class="form-label">Apellido(s)</label>
                 <input type="text" class="form-control" id="apellidos" name="apellidos">
             </div>
             <div class="mb-3">
@@ -62,12 +63,14 @@
                 const tipoIdentificacion = $("#tipo_identificacion").val();
                 const numeroIdentificacion = $("#numero_identificacion").val();
 
-                // validacion INE o Acta
-                if (tipoIdentificacion === "INE" && numeroIdentificacion.length !== 18) {
-                    isValid = false;
-                    errors['numero_identificacion'] =
-                        'El número de identificación del INE debe tener al menos 18 caracteres.';
-                } else if (tipoIdentificacion !== "INE" && !/^\d+$/.test(numeroIdentificacion)) {
+                // Validación INE o Acta
+                if (tipoIdentificacion === "INE") {
+                    if (numeroIdentificacion.length < 8) {
+                        isValid = false;
+                        errors['numero_identificacion'] =
+                            'El número de identificación del INE debe tener al menos 8 caracteres.';
+                    }
+                } else if (!/^\d+$/.test(numeroIdentificacion)) {
                     isValid = false;
                     errors['numero_identificacion'] = 'El número de identificación debe ser solo números.';
                 }
@@ -87,7 +90,7 @@
 
                 // Validación de la razon social
                 const razonSocial = $("#razon_social").val();
-                if (razonSocial && !/^[a-zA-Z0-9\s]+$/.test(razonSocial)) {
+                if (!/^[a-zA-Z\s]+$/.test(razonSocial)) {
                     isValid = false;
                     errors['razon_social'] =
                         'La razón social solo debe contener letras, números y espacios.';

@@ -6,7 +6,7 @@ HTML5 - estructura de las pagians
 CSS - estilos para las paginas
 XAMPP - servidor
 Mysql - base de datos
-Sweetalert2 - validaciones
+Sweetalert2 y JQuery- validaciones y obtencion de datos
 
 
 Inicializar proyecto:
