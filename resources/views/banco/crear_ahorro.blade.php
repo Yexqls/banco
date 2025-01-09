@@ -15,27 +15,32 @@
             </div>
             <div class="mb-3">
                 <label for="numero_cuenta" class="form-label">Número de cuenta</label>
-                <input type="text" class="form-control" id="numero_cuenta" name="numero_cuenta" >
+                <input type="text" class="form-control" id="numero_cuenta" name="numero_cuenta">
             </div>
             <button type="submit" class="btn btn-primary">Crear Cuenta</button>
         </form>
 
-        {{-- Mostrar mensajes --}}
-        @if (session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#cuenta-form").submit(function (event) {
+        //Validaciones 
+        $(document).ready(function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: '{{ session('success') }}',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            @endif
+
+            $("#cuenta-form").submit(function(event) {
                 let isValid = true;
-                let errorMessage = '';  
-                let errors = {}; 
+                let errorMessage = '';
+                let errors = {};
 
                 // Limpiar mensajes previos
                 $(".error-message").remove();
@@ -43,7 +48,8 @@
                 const numeroCuenta = $("#numero_cuenta").val();
                 if (!/^\d{10,18}$/.test(numeroCuenta)) {
                     isValid = false;
-                    errors['numero_cuenta'] = 'El número de cuenta debe ser solo números y tener entre 10 y 18 caracteres.';
+                    errors['numero_cuenta'] =
+                        'El número de cuenta debe ser solo números y tener entre 10 y 18 caracteres.';
                 }
 
                 // Validación cliente
@@ -54,7 +60,7 @@
                 }
 
                 if (!isValid) {
-                    event.preventDefault(); 
+                    event.preventDefault();
                     let errorHTML = '';
                     for (const field in errors) {
                         errorHTML += `<p><strong>${field}</strong>: ${errors[field]}</p>`;
@@ -62,7 +68,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: '¡Error!',
-                        html: errorHTML, 
+                        html: errorHTML,
                         showConfirmButton: true,
                         confirmButtonText: 'Corregir',
                     });

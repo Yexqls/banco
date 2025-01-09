@@ -14,7 +14,8 @@
             </div>
             <div class="mb-3">
                 <label for="numero_identificacion" class="form-label">Número de Identificación</label>
-                <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion">
+                <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion"
+                    maxlength="18">
             </div>
             <div class="mb-3">
                 <label for="nombres" class="form-label">Nombres</label>
@@ -34,23 +35,26 @@
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
-
-        {{-- Mostrar mensajes --}}
-        @if (session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#cliente-form").submit(function (event) {
+        //Validaciones 
+        $(document).ready(function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: '{{ session('success') }}',
+                    showConfirmButton: true,
+                });
+            @endif
+
+            $("#cliente-form").submit(function(event) {
                 let isValid = true;
-                let errorMessage = '';  // Variable para acumular todos los errores
-                let errors = {}; // Objeto para almacenar los errores por campo
+                let errorMessage = '';
+                let errors = {};
 
                 // Limpiar mensajes previos
                 $(".error-message").remove();
@@ -58,10 +62,11 @@
                 const tipoIdentificacion = $("#tipo_identificacion").val();
                 const numeroIdentificacion = $("#numero_identificacion").val();
 
-                // validacion INE o Acata
+                // validacion INE o Acta
                 if (tipoIdentificacion === "INE" && numeroIdentificacion.length !== 18) {
                     isValid = false;
-                    errors['numero_identificacion'] = 'El número de identificación del INE debe tener al menos 18 caracteres.';
+                    errors['numero_identificacion'] =
+                        'El número de identificación del INE debe tener al menos 18 caracteres.';
                 } else if (tipoIdentificacion !== "INE" && !/^\d+$/.test(numeroIdentificacion)) {
                     isValid = false;
                     errors['numero_identificacion'] = 'El número de identificación debe ser solo números.';
@@ -84,7 +89,8 @@
                 const razonSocial = $("#razon_social").val();
                 if (razonSocial && !/^[a-zA-Z0-9\s]+$/.test(razonSocial)) {
                     isValid = false;
-                    errors['razon_social'] = 'La razón social solo debe contener letras, números y espacios.';
+                    errors['razon_social'] =
+                        'La razón social solo debe contener letras, números y espacios.';
                 }
 
                 const municipio = $("#municipio").val();
@@ -94,7 +100,7 @@
                 }
 
                 if (!isValid) {
-                    event.preventDefault(); 
+                    event.preventDefault();
 
                     let errorHTML = '';
                     for (const field in errors) {

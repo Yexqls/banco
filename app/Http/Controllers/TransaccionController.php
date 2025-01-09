@@ -22,28 +22,31 @@ class TransaccionController extends Controller
             'monto' => 'required|numeric|min:0.01',
             'fecha_creacion' => 'required|date',
         ]);
-
+    
         $cuenta = CuentaAhorro::findOrFail($request->cuenta_id);
-
+    
         if ($request->tipo_transaccion === 'retiro') {
             // Validar que el saldo sea suficiente
             if ($cuenta->saldo < $request->monto) {
-                return back()->withErrors(['monto' => 'El saldo disponible no es suficiente para realizar el retiro.']);
+                // Redirigir con un mensaje de error
+                return redirect()->back()->with('error', 'El saldo disponible no es suficiente para realizar el retiro.');
             }
             $cuenta->saldo -= $request->monto;
         } elseif ($request->tipo_transaccion === 'consignacion') {
             $cuenta->saldo += $request->monto;
         }
+    
         $cuenta->save();
-
-        // registrar transiccion
+    
+        // Registrar transacción
         Transaccion::create([
             'cuenta_id' => $cuenta->id,
             'monto' => $request->monto,
             'tipo_transaccion' => $request->tipo_transaccion,
             'fecha_transaccion' => $request->fecha_creacion,
         ]);
-
+    
         return redirect()->back()->with('success', 'Transacción registrada exitosamente.');
     }
+    
 }
