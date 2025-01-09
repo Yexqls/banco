@@ -9,6 +9,7 @@ Apache: servidor web.
 MySQL: base de datos.
 SweetAlert2 y jQuery: validaciones y obtención de datos.
 
+///////////////////
 Inicializar proyecto:
 Guárdalo en una carpeta en la siguiente ruta:
 C:\xampp\htdocs
@@ -19,4 +20,9 @@ php artisan serve
 abre XAMPP y inicia APACHE y MySQL
 
 Abre phpMyAdmin y crea una tabla llamada banco. Luego, importa la base de datos.
+
+///////////////////
+Para manejar el proyecto tiene la venatna principal dobnde pude interactuar con las cuentas creadas,
+asi mismo pude crear cuenats con el texto que "Crear cliente" que esta en la parte superior izquierda, todos los crud estan validados
+enviando una alerta en caso de que un dato este mal o que falte uno.
 
