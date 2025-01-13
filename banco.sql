@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-01-2025 a las 02:15:48
+-- Tiempo de generación: 13-01-2025 a las 20:04:42
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,8 +54,8 @@ CREATE TABLE `cache_locks` (
 CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
   `tipo_identificacion` varchar(50) DEFAULT NULL,
-  `numero_identificacion` varchar(50) DEFAULT NULL,
-  `nombres` varchar(100) DEFAULT NULL,
+  `numero_identificacion` varchar(50) NOT NULL,
+  `nombres` varchar(100) NOT NULL,
   `apellidos` varchar(100) DEFAULT NULL,
   `razon_social` varchar(100) DEFAULT NULL,
   `municipio` varchar(50) DEFAULT NULL
@@ -66,9 +66,9 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `tipo_identificacion`, `numero_identificacion`, `nombres`, `apellidos`, `razon_social`, `municipio`) VALUES
-(1, 'INE', '32423423', 'Luis', 'Suarez', NULL, 'Morelia'),
-(2, 'INE', '23423444', 'Sergio', 'Perez', NULL, 'Morelia'),
-(3, 'Acta Constitutiva', '123123', NULL, NULL, 'EMKODE', 'Morelia');
+(1, 'INE', '32423423', 'Luis', 'Suarez', '', 'Morelia'),
+(2, 'INE', '23423444', 'Sergio', 'Perez', '', 'Morelia'),
+(3, 'Acta Constitutiva', '123123', '', '', 'EMKODE', 'Morelia');
 
 -- --------------------------------------------------------
 
@@ -78,21 +78,13 @@ INSERT INTO `clientes` (`id`, `tipo_identificacion`, `numero_identificacion`, `n
 
 CREATE TABLE `cuentas` (
   `id` int(11) NOT NULL,
-  `cliente_id` int(11) DEFAULT NULL,
-  `numero_cuenta` varchar(20) DEFAULT NULL,
+  `cliente_id` int(11) NOT NULL,
+  `numero_cuenta` varchar(20) NOT NULL,
   `saldo` decimal(10,2) DEFAULT 0.00,
   `fecha_creacion` datetime DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `cuentas`
---
-
-INSERT INTO `cuentas` (`id`, `cliente_id`, `numero_cuenta`, `saldo`, `fecha_creacion`, `created_at`, `updated_at`) VALUES
-(1, 3, '1234567812', 25568.00, '2025-01-08 19:01:07', '2025-01-09 07:01:07', '2025-01-09 07:09:10'),
-(2, 1, '23423423423', 800.00, '2025-01-08 19:08:58', '2025-01-09 07:08:58', '2025-01-09 07:09:38');
 
 -- --------------------------------------------------------
 
@@ -198,7 +190,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('4l9Fe6kHv9F1SoeRXmlJ5yGe7hdJ5Se7o9Eb3ZIx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSGhKRlVxUzMzbHhMcmpkOUhGMjNlcEJ4VnozbGppbGFCeUlJb1FROSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9iYW5jbyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1736384984);
+('pYhd3PBWHRqiXituOsPBFrXn5flXu44T2uEcdmup', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVm1rM05PRjNUcFh2SlZmaDIwOE9pS2V1RVVVVlpSQnFOMXlLYmpETiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9iYW5jbyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1736795072);
 
 -- --------------------------------------------------------
 
@@ -210,20 +202,11 @@ CREATE TABLE `transacciones` (
   `id` int(11) NOT NULL,
   `cuenta_id` int(11) NOT NULL,
   `monto` decimal(10,2) NOT NULL,
-  `tipo_transaccion` varchar(50) NOT NULL,
-  `fecha_transaccion` timestamp NULL DEFAULT NULL,
+  `tipo_transaccion` enum('deposito','retiro','transferencia') NOT NULL,
+  `fecha_transaccion` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `transacciones`
---
-
-INSERT INTO `transacciones` (`id`, `cuenta_id`, `monto`, `tipo_transaccion`, `fecha_transaccion`, `created_at`, `updated_at`) VALUES
-(1, 1, 2145.00, 'consignacion', '2025-01-09 01:01:00', '2025-01-09 07:01:33', '2025-01-09 07:01:33'),
-(2, 1, 23423.00, 'consignacion', '2025-01-09 01:09:00', '2025-01-09 07:09:10', '2025-01-09 07:09:10'),
-(3, 2, 800.00, 'consignacion', '2025-01-09 01:09:00', '2025-01-09 07:09:38', '2025-01-09 07:09:38');
 
 -- --------------------------------------------------------
 
@@ -341,7 +324,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `cuentas`
 --
 ALTER TABLE `cuentas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -365,7 +348,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `transacciones`
 --
 ALTER TABLE `transacciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -376,6 +359,12 @@ ALTER TABLE `users`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cuentas`
+--
+ALTER TABLE `cuentas`
+  ADD CONSTRAINT `cuentas_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `transacciones`

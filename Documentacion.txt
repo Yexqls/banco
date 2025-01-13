@@ -21,6 +21,9 @@ Activa el .env y configure la conexion
 
 Abre phpMyAdmin y crea una tabla llamada banco. (Esta se encuentar en la raiz del proeycto como "banco.sql" pero el key necesario cambia al descargarla de github, asi que siga al siguiente paso)
 
+En caso de no querere realizar el paso anterior utilize la key e importe la base de datos banco que ya esta en la raiz del proyecto:
+APP_KEY=base64:4i3Gf2/rIq3di60gCPyNw6FjHjFgk/GuYKevQvK1NR0=
+
 Genera una key en caso de no tenerla y genera las tablas en banco:
 php artisan key:generate
 php artisan migrate
@@ -31,6 +34,46 @@ abre XAMPP y inicia APACHE y MySQL
 
 Ejecuta el el siguiente comando (Es el puerto por defecto 8000) y abra el link:
 php artisan serve
+
+//////////////////
+Base de datos:
+-- Tabla clientes
+CREATE TABLE `clientes` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tipo_identificacion` VARCHAR(50) DEFAULT NULL,
+  `numero_identificacion` VARCHAR(50) UNIQUE NOT NULL,
+  `nombres` VARCHAR(100) NOT NULL,
+  `apellidos` VARCHAR(100) DEFAULT NULL,
+  `razon_social` VARCHAR(100) DEFAULT NULL,
+  `municipio` VARCHAR(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Tabla cuentas
+CREATE TABLE `cuentas` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT(11) NOT NULL,
+  `numero_cuenta` VARCHAR(20) UNIQUE NOT NULL,
+  `saldo` DECIMAL(10,2) DEFAULT 0.00,
+  `fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP(),
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Tabla transacciones
+CREATE TABLE `transacciones` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `cuenta_id` INT(11) NOT NULL,
+  `monto` DECIMAL(10,2) NOT NULL,
+  `tipo_transaccion` ENUM('deposito', 'retiro', 'transferencia') NOT NULL,
+  `fecha_transaccion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`cuenta_id`) REFERENCES `cuentas` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 ///////////////////
