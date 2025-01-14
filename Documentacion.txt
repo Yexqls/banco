@@ -46,6 +46,8 @@ CREATE TABLE `clientes` (
   `apellidos` VARCHAR(100) DEFAULT NULL,
   `razon_social` VARCHAR(100) DEFAULT NULL,
   `municipio` VARCHAR(50) DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,6 +76,7 @@ CREATE TABLE `transacciones` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`cuenta_id`) REFERENCES `cuentas` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 
 ///////////////////

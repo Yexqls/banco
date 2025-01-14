@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-01-2025 a las 20:04:42
+-- Tiempo de generación: 14-01-2025 a las 05:57:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -58,17 +58,19 @@ CREATE TABLE `clientes` (
   `nombres` varchar(100) NOT NULL,
   `apellidos` varchar(100) DEFAULT NULL,
   `razon_social` varchar(100) DEFAULT NULL,
-  `municipio` varchar(50) DEFAULT NULL
+  `municipio` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `tipo_identificacion`, `numero_identificacion`, `nombres`, `apellidos`, `razon_social`, `municipio`) VALUES
-(1, 'INE', '32423423', 'Luis', 'Suarez', '', 'Morelia'),
-(2, 'INE', '23423444', 'Sergio', 'Perez', '', 'Morelia'),
-(3, 'Acta Constitutiva', '123123', '', '', 'EMKODE', 'Morelia');
+INSERT INTO `clientes` (`id`, `tipo_identificacion`, `numero_identificacion`, `nombres`, `apellidos`, `razon_social`, `municipio`, `created_at`, `updated_at`) VALUES
+(1, 'INE', '32423423', 'Luis', 'Suarez', '', 'Morelia', '2025-01-14 10:54:47', '2025-01-14 04:55:57'),
+(2, 'INE', '23423444', 'Sergio', 'Perez', '', 'Morelia', '2025-01-14 10:55:18', '2025-01-14 04:55:56'),
+(3, 'Acta Constitutiva', '123123', '', '', 'EMKODE', 'Morelia', '2025-01-14 10:55:38', '2025-01-14 04:55:53');
 
 -- --------------------------------------------------------
 
@@ -190,7 +192,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('pYhd3PBWHRqiXituOsPBFrXn5flXu44T2uEcdmup', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVm1rM05PRjNUcFh2SlZmaDIwOE9pS2V1RVVVVlpSQnFOMXlLYmpETiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9iYW5jbyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1736795072);
+('pYhd3PBWHRqiXituOsPBFrXn5flXu44T2uEcdmup', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVm1rM05PRjNUcFh2SlZmaDIwOE9pS2V1RVVVVlpSQnFOMXlLYmpETiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jdWVudGEvYWhvcnJvIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1736796287),
+('X3g7C82gwGPWDhXMWLTGGcUEfIhfhZz5p2lf4mfW', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOVZOQXBIdUx1ckpmbG55aFQ2RGpFM2lMR3lTSmxMZlVFMG9rMTB2OSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jdWVudGEvYWhvcnJvIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1736830565);
 
 -- --------------------------------------------------------
 
