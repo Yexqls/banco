@@ -41,7 +41,11 @@
         <a class="navbar-brand" href="/banco" style="color: white; padding-left: 10px;">
             <i class="fa-solid fa-house" style="padding-right: 2px;"></i> <b>Banco MX</b>
         </a>
-        <a href="/usuario/crear" class="text-white ml-3" style="padding-left: 20px;">Crear cliente</a>
+        <button type="button" class="btn btn-light">
+            <a href="/usuario/crear" style="text-decoration: none"> <i class="fa-solid fa-user-plus"></i>
+                Crear cliente</a>
+        </button>
+
     </nav>
 
     <div class="container">
@@ -50,11 +54,11 @@
 
     <footer>
         <p>&copy; {{ date('Y') }} Banco MX. Todos los derechos reservados.</p>
-        <p>Desarrollado por Yucli Emmanuel.</p>
+        <p>Desarrollado por Yucli Emmanuel Baza Ortuño para EMKODE.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 </body>
 

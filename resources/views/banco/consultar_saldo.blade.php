@@ -17,7 +17,7 @@
                     @endforeach
                 </select>
             </div>
-            {{-- Mostrar saldo --}}
+            {{-- Mostrar saldo con decimales --}}
             @isset($saldo)
                 <div class="mt-3">
                     <h4>Saldo actual: ${{ number_format($saldo, 2) }}</h4>

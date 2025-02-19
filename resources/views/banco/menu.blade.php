@@ -16,7 +16,7 @@
         }
 
         .card-3 {
-            background-color: rgb(46, 204, 113);
+            background-color: hsl(145, 63%, 23%);
             color: white;
         }
 
