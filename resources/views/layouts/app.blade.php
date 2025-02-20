@@ -45,6 +45,10 @@
             <a href="/usuario/crear" style="text-decoration: none"> <i class="fa-solid fa-user-plus"></i>
                 Crear cliente</a>
         </button>
+        <button type="button" class="btn btn-light" style="margin-left: 20px ">
+            <a href="/usuarios" style="text-decoration: none"> 
+                Lista de clientes</a>
+        </button>
 
     </nav>
 

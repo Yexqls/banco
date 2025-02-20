@@ -7,6 +7,7 @@ use App\Models\CuentaAhorro;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TransaccionController;
+use App\Http\Controllers\UserLista;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,3 +31,9 @@ Route::post('/banco/transaccion', [TransaccionController::class, 'registrarTrans
 //Consultar
 Route::get('/cuenta/consulta', [ConsultarController::class, 'consulta'])->name('cuenta.consulta');
 Route::post('/cuenta/consultar-saldo', [ConsultarController::class, 'consultarSaldo'])->name('cuenta.consultarSaldo');
+
+
+//Lista de clientes
+
+Route::get('/usuarios', [UserLista::class, 'index'])->name('usuarios.index');
+Route::delete('users/{id}', [UserLista::class, 'eliminar'])->name('usuarios.eliminar');
