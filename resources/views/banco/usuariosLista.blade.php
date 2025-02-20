@@ -5,7 +5,7 @@
         <h1>Lista de usuarios</h1>
 
         <table class="table table-bordered">
-            <thead class="table-dark">
+            <thead class="table-primary">
                 <tr>
                     <td>Nombres</td>
                     <td>Apellidos</td>
@@ -24,6 +24,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-danger" onclick="confirmarEliminacion({{ $usuario->id }})">Eliminar</button>
+                                <a href="/usuario/crear">
+                                <button type="button" class="btn btn-success">Añadir</button>
+                            </a>
                             </form>
                         </td>
                     </tr>
