@@ -24,9 +24,6 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-danger" onclick="confirmarEliminacion({{ $usuario->id }})">Eliminar</button>
-                                <a href="/usuario/crear">
-                                <button type="button" class="btn btn-success">Añadir</button>
-                            </a>
                             </form>
                         </td>
                     </tr>
