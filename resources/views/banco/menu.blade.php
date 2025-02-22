@@ -36,7 +36,7 @@
         .card {
             width: 22rem;
             height: 30rem;
-            border-radius: 8px;
+            border-radius: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
