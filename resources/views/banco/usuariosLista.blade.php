@@ -23,7 +23,7 @@
                             <form action="{{ route('usuarios.eliminar', $usuario->id) }}" method="POST" id="form-eliminar-{{ $usuario->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger" onclick="confirmarEliminacion({{ $usuario->id }})">Eliminar</button>
+                                <button type="button" class="btn btn-danger" onclick="confirmarEliminacion({{ $usuario->id }})"><i class="fa-solid fa-trash"></i> Eliminar</button>
                             </form>
                         </td>
                     </tr>
